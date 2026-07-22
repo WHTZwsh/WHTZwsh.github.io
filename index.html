@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>枕边诗笺 · 个人诗集</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f7f3e8;
+      font-family: 'Noto Serif SC', 'Times New Roman', '宋体', '仿宋', '华文楷体', '楷体', KaiTi, Georgia, serif;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 2rem 1rem;
+      margin: 0;
+      color: #3e3a35;
+      line-height: 1.7;
+    }
+
+    /* 诗集主容器 - 模拟一本旧书 */
+    .poetry-book {
+      max-width: 600px;
+      width: 100%;
+      background: #fef9ef;
+      border-radius: 28px 12px 28px 12px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 8px 20px rgba(120, 80, 50, 0.15);
+      padding: 2.5rem 1.8rem;
+      position: relative;
+      border: 1px solid #e5d9c4;
+      background-image: radial-gradient(circle at 20% 30%, rgba(245, 235, 210, 0.6) 2%, transparent 3%),
+                        radial-gradient(circle at 80% 70%, rgba(225, 210, 180, 0.3) 1%, transparent 2%);
+      transition: all 0.3s ease;
+    }
+
+    /* 装饰性书脊 */
+    .poetry-book::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 20px;
+      bottom: 20px;
+      width: 6px;
+      background: linear-gradient(to bottom, #c9b28b, #a48b65, #c9b28b);
+      border-radius: 4px;
+      opacity: 0.5;
+    }
+
+    /* 标题区域 */
+    .book-header {
+      text-align: center;
+      margin-bottom: 2.2rem;
+      border-bottom: 1px dashed #c9b896;
+      padding-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .book-title {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: 6px;
+      color: #5e4632;
+      text-shadow: 1px 1px 0 rgba(200, 170, 120, 0.3);
+      margin-bottom: 0.5rem;
+      font-family: "Noto Serif SC", "楷体", "KaiTi", serif;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #8b7a62;
+      letter-spacing: 2px;
+      font-style: italic;
+      margin-top: 0.2rem;
+    }
+
+    .poet-name {
+      font-size: 1.2rem;
+      color: #785e3a;
+      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
+    .poet-name::before,
+    .poet-name::after {
+      content: "❀";
+      font-size: 0.9rem;
+      color: #b4986b;
+    }
+
+    /* 诗集简介卡片 */
+    .intro-card {
+      background: #faf5eb;
+      border-radius: 24px 8px 24px 8px;
+      padding: 1.5rem 1.2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #e3d4bb;
+      box-shadow: inset 0 0 12px rgba(210, 180, 130, 0.2);
+      font-size: 0.95rem;
+      color: #4d4437;
+      text-align: center;
+      backdrop-filter: blur(2px);
+    }
+
+    .intro-text {
+      font-style: italic;
+      letter-spacing: 0.4px;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      margin: 1.8rem 0 1.2rem;
+      color: #b9a077;
+    }
+
+    .divider-line {
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(to right, transparent, #dcc8a0, transparent);
+    }
+
+    .divider-icon {
+      font-size: 1.2rem;
+    }
+
+    /* 诗歌列表 */
+    .poem-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .poem-item {
+      background: rgba(255, 250, 240, 0.7);
+      border-radius: 16px 4px 16px 4px;
+      padding: 1.5rem 1.2rem;
+      border-left: 4px solid #d3b690;
+      box-shadow: 0 6px 14px rgba(140, 110, 70, 0.08);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      backdrop-filter: blur(4px);
+    }
+
+    .poem-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 22px rgba(120, 90, 50, 0.12);
+      border-left-color: #b38b5b;
+    }
+
+    .poem-title {
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: #5b3f2a;
+      margin-bottom: 0.9rem;
+      letter-spacing: 2px;
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+
+    .poem-title::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #d9c098, transparent);
+      margin-left: 0.5rem;
+      align-self: center;
+    }
+
+    .poem-content {
+      font-size: 1.05rem;
+      white-space: pre-line;
+      line-height: 1.9;
+      color: #4e4335;
+      padding-left: 0.3rem;
+      font-family: "Noto Serif SC", "楷体", "华文楷体", "KaiTi", serif;
+    }
+
+    .poem-note {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: #9b8974;
+      text-align: right;
+      font-style: italic;
+      border-top: 1px dotted #dac29c;
+      padding-top: 0.6rem;
+    }
+
+    /* 页脚 */
+    .book-footer {
+      margin-top: 2.5rem;
+      text-align: center;
+      color: #9f8b72;
+      font-size: 0.85rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .footer-dot {
+      width: 6px;
+      height: 6px;
+      background: #c7ad7b;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* 响应式调整 */
+    @media (max-width: 480px) {
+      .poetry-book {
+        padding: 1.8rem 1rem;
+      }
+      .book-title {
+        font-size: 2rem;
+        letter-spacing: 3px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="poetry-book">
+    
+    <!-- 头部：诗集名称与作者 -->
+    <header class="book-header">
+      <h1 class="book-title">枕边诗笺</h1>
+      <p class="subtitle">· 月光与尘埃的私语 ·</p>
+      <div class="poet-name">林栖 著</div>
+    </header>
+
+    <!-- 诗集简介 -->
+    <section class="intro-card">
+      <p class="intro-text">
+        “这些诗写给每一个失眠的夜晚，<br>写给落在窗台上的雨，写给未曾寄出的信。<br>文字是灵魂的拓印，而我不过是个温柔的记录者。”
+      </p>
+      <p style="margin-top: 0.7rem; font-size: 0.85rem; color: #7f6e58;">—— 收录 32 首现代抒情短诗</p>
+    </section>
+
+    <!-- 装饰分隔线 -->
+    <div class="divider">
+      <span class="divider-line"></span>
+      <span class="divider-icon">✽</span>
+      <span class="divider-line"></span>
+    </div>
+
+    <!-- 诗歌列表展示（选取三首代表作品） -->
+    <div class="poem-list">
+      
+      <!-- 诗歌一：秋日慢 -->
+      <div class="poem-item">
+        <h2 class="poem-title">秋日慢</h2>
+        <div class="poem-content">
+          我们坐在老槐树的阴影里，<br>
+          数落叶旋转的角度。<br>
+          茶凉了又续，续了又凉，<br>
+          像极了这些年欲言又止的句子。<br><br>
+          风把桂花香钉在衣领上，<br>
+          你说慢一些，再慢一些——<br>
+          于是整个下午就折成了一只<br>
+          不会飞的纸鹤。
+        </div>
+        <div class="poem-note">写于十月·城南旧巷</div>
+      </div>
+
+      <!-- 诗歌二：信的距离 -->
+      <div class="poem-item">
+        <h2 class="poem-title">信的距离</h2>
+        <div class="poem-content">
+          邮戳在抽屉里泛潮，<br>
+          墨水洇成一片远山的轮廓。<br>
+          我始终没有贴邮票，<br>
+          因为地址那一栏写着<br>
+          “有你的春天”。<br><br>
+          或许我们之间隔着<br>
+          不是山海，<br>
+          而是一个落笔时<br>
+          微微颤抖的停顿。
+        </div>
+        <div class="poem-note">致Z · 未寄出的第七封</div>
+      </div>
+
+      <!-- 诗歌三：失眠手记 -->
+      <div class="poem-item">
+        <h2 class="poem-title">失眠手记</h2>
+        <div class="poem-content">
+          凌晨三点，听见海棠拆开夜色。<br>
+          月光像旧丝绸披在椅背上，<br>
+          我收集所有安静的声音：<br>
+          冰箱的低鸣、猫的呵欠、<br>
+          以及秒针踩过心跳的节拍。<br><br>
+          天亮之前，<br>
+          我把梦折叠成小小的方块，<br>
+          塞进枕头下面，<br>
+          等待另一个无眠的人认领。
+        </div>
+        <div class="poem-note">选自《暗夜回声》章节</div>
+      </div>
+    </div>
+
+    <!-- 底部装饰 -->
+    <div class="book-footer">
+      <span class="footer-dot"></span>
+      <span>纸短情长 · 诗以咏志</span>
+      <span class="footer-dot"></span>
+    </div>
+
+    <!-- 隐约的额外信息：诗集特色 -->
+    <div style="margin-top: 1.2rem; font-size: 0.7rem; color: #bfae91; text-align: center; letter-spacing: 1px;">
+      🌿 布面精装 | 内页手绘插图 | 限量编号本
+    </div>
+  </div>
+
+</body>
+</html>

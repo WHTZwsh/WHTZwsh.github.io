@@ -1,0 +1,292 @@
+/* ===== 基础变量与主题 ===== */
+:root {
+  --md-sys-color-primary: #B81D5A;
+  --md-sys-color-on-primary: #FFFFFF;
+  --md-sys-color-primary-container: #FFD9E2;
+  --md-sys-color-on-primary-container: #3F001A;
+  --md-sys-color-secondary: #74565F;
+  --md-sys-color-on-secondary: #FFFFFF;
+  --md-sys-color-secondary-container: #FFD9E2;
+  --md-sys-color-on-secondary-container: #2B151D;
+  --md-sys-color-background: #FFFBFF;
+  --md-sys-color-on-background: #1F1A1B;
+  --md-sys-color-surface: #FFFBFF;
+  --md-sys-color-on-surface: #1F1A1B;
+  --md-sys-color-surface-variant: #F2DDE2;
+  --md-sys-color-on-surface-variant: #514347;
+  --md-sys-color-outline: #847377;
+  --md-sys-color-outline-variant: #D6C2C7;
+  --md-sys-color-shadow: #000000;
+  --md-elevation-1: 0px 1px 3px rgba(0,0,0,0.15);
+  --md-elevation-2: 0px 2px 6px rgba(0,0,0,0.1);
+}
+
+[data-theme="ocean"] {
+  --md-sys-color-primary: #006878;
+  --md-sys-color-primary-container: #A0EFFF;
+  --md-sys-color-on-primary-container: #001F26;
+  --md-sys-color-secondary: #4A6268;
+  --md-sys-color-secondary-container: #CDE7EE;
+  --md-sys-color-on-secondary-container: #051F24;
+  --md-sys-color-background: #FAFDFD;
+  --md-sys-color-on-background: #191C1D;
+  --md-sys-color-surface: #FAFDFD;
+  --md-sys-color-on-surface: #191C1D;
+  --md-sys-color-surface-variant: #DBE4E7;
+  --md-sys-color-on-surface-variant: #40484B;
+  --md-sys-color-outline: #6F797B;
+  --md-sys-color-outline-variant: #BFC8CB;
+}
+
+[data-theme="forest"] {
+  --md-sys-color-primary: #386A1C;
+  --md-sys-color-primary-container: #B7F48A;
+  --md-sys-color-on-primary-container: #062100;
+  --md-sys-color-secondary: #54634A;
+  --md-sys-color-secondary-container: #D7E8C8;
+  --md-sys-color-on-secondary-container: #121F0B;
+  --md-sys-color-background: #FDFDF5;
+  --md-sys-color-on-background: #1A1C18;
+  --md-sys-color-surface: #FDFDF5;
+  --md-sys-color-on-surface: #1A1C18;
+  --md-sys-color-surface-variant: #E0E4D7;
+  --md-sys-color-on-surface-variant: #43483F;
+  --md-sys-color-outline: #73796E;
+  --md-sys-color-outline-variant: #C3C8BB;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', 'Noto Sans SC', sans-serif;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: background-color 0.3s;
+  margin: 0;
+  padding: 0;
+}
+
+/* ===== 导航栏 ===== */
+.navbar {
+  width: 100%;
+  max-width: 480px;
+  margin: 16px auto 0 auto;
+  background-color: var(--md-sys-color-surface);
+  border-radius: 28px;
+  box-shadow: var(--md-elevation-2);
+  padding: 10px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 8px;
+  backdrop-filter: blur(8px);
+  transition: background-color 0.3s;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--md-sys-color-on-surface);
+  white-space: nowrap;
+}
+
+.nav-left .material-icons-outlined {
+  font-size: 1.2rem;
+  color: var(--md-sys-color-primary);
+}
+
+.nav-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+/* 主题小按钮组 */
+.theme-group {
+  display: flex;
+  gap: 4px;
+}
+
+.theme-dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  background: var(--md-sys-color-surface-variant);
+  color: var(--md-sys-color-on-surface-variant);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  padding: 0;
+  line-height: 1;
+}
+
+.theme-dot.active {
+  border-color: var(--md-sys-color-primary);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-weight: 500;
+}
+
+/* 语言切换按钮 */
+.lang-btn {
+  background: var(--md-sys-color-surface-variant);
+  border: none;
+  border-radius: 20px;
+  padding: 5px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--md-sys-color-on-surface-variant);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  font-family: inherit;
+  height: 30px;
+}
+
+.lang-btn:hover {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+}
+
+/* ===== 主卡片容器 ===== */
+.container {
+  max-width: 480px;
+  width: 100%;
+  margin: 16px 16px 24px;
+  background-color: var(--md-sys-color-surface);
+  border-radius: 28px;
+  box-shadow: var(--md-elevation-2);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  transition: background-color 0.3s;
+}
+
+h1 {
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+  text-align: center;
+  letter-spacing: 0.3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 操作按钮列表 */
+.actions-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.md-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border: none;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  box-shadow: var(--md-elevation-1);
+  width: 100%;
+  font-family: inherit;
+}
+
+.md-button.secondary {
+  background-color: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.md-button:hover {
+  filter: brightness(1.05);
+  box-shadow: var(--md-elevation-2);
+}
+
+.md-button:active {
+  transform: scale(0.98);
+}
+
+/* Toast 提示 */
+.toast-message {
+  text-align: center;
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: 0.25s;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: -6px;
+}
+
+.toast-message.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 感谢区域 */
+.thanks-section {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--md-sys-color-on-surface-variant);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+  padding-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.heart-footer {
+  font-weight: 500;
+  color: var(--md-sys-color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 420px) {
+  .navbar {
+    padding: 8px 12px;
+  }
+  .nav-left {
+    font-size: 0.8rem;
+  }
+}

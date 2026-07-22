@@ -69,60 +69,61 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
   transition: background-color 0.3s;
   padding: 16px;
+  position: relative;
+  padding-bottom: 80px;
 }
 
-/* ===== 导航栏（进一步缩小横向长度，增加下边距） ===== */
+/* ===== 导航栏（增大体积） ===== */
 .navbar {
   width: fit-content;
-  max-width: 300px;
-  min-width: 240px;
+  max-width: 320px;
+  min-width: 260px;
   background-color: var(--md-sys-color-surface);
-  border-radius: 24px;
+  border-radius: 28px;
   box-shadow: var(--md-elevation-2);
-  padding: 8px 16px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 16px;
   backdrop-filter: blur(8px);
   transition: background-color 0.3s;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
 }
 
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   font-weight: 700;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--md-sys-color-on-surface);
   white-space: nowrap;
 }
 
 .nav-left .material-icons-outlined {
-  font-size: 1rem;
+  font-size: 1.2rem;
   color: var(--md-sys-color-primary);
 }
 
 .nav-controls {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-shrink: 0;
 }
 
 /* 主题小按钮组 */
 .theme-group {
   display: flex;
-  gap: 3px;
+  gap: 4px;
 }
 
 .theme-dot {
-  width: 24px;
-  height: 24px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 2px solid transparent;
   background: var(--md-sys-color-surface-variant);
@@ -131,7 +132,7 @@ body {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   transition: all 0.2s;
   padding: 0;
   line-height: 1;
@@ -147,19 +148,19 @@ body {
 .lang-btn {
   background: var(--md-sys-color-surface-variant);
   border: none;
-  border-radius: 16px;
-  padding: 4px 10px;
-  font-size: 0.7rem;
+  border-radius: 18px;
+  padding: 6px 12px;
+  font-size: 0.75rem;
   font-weight: 600;
   color: var(--md-sys-color-on-surface-variant);
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 3px;
+  gap: 4px;
   transition: all 0.2s;
   white-space: nowrap;
   font-family: inherit;
-  height: 26px;
+  height: 30px;
 }
 
 .lang-btn:hover {
@@ -167,7 +168,7 @@ body {
   color: var(--md-sys-color-on-primary-container);
 }
 
-/* ===== 主内容区域 ===== */
+/* ===== 主内容区域（向下移动） ===== */
 .main-content {
   width: 100%;
   max-width: 400px;
@@ -175,6 +176,8 @@ body {
   flex-direction: column;
   gap: 20px;
   padding: 0 8px;
+  margin-top: 20px;
+  flex: 1;
 }
 
 h1 {
@@ -183,7 +186,7 @@ h1 {
   color: var(--md-sys-color-on-background);
   text-align: center;
   letter-spacing: 0.3px;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 /* 操作按钮列表 */
@@ -250,15 +253,21 @@ h1 {
   transform: translateY(0);
 }
 
-/* 感谢区域 */
+/* ===== 底部固定区域 ===== */
 .thanks-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   text-align: center;
   font-size: 0.8rem;
   color: var(--md-sys-color-on-surface-variant);
-  padding-top: 12px;
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+  background-color: var(--md-sys-color-background);
+  border-top: 1px solid var(--md-sys-color-outline-variant);
 }
 
 .heart-footer {

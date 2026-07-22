@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>MinecraftBE服务器 | 樱花粉</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">
+      <span class="material-icons-outlined">grass</span>
+      <span>MCBE</span>
+    </div>
+    <div class="nav-controls">
+      <div class="theme-group" id="themeGroup">
+        <button class="theme-dot active" data-theme="sakura" title="樱花粉">🌸</button>
+        <button class="theme-dot" data-theme="ocean" title="海洋">🌊</button>
+        <button class="theme-dot" data-theme="forest" title="森林">🌿</button>
+      </div>
+      <button class="lang-btn" id="langToggle" title="切换语言">
+        <span class="material-icons-outlined">language</span>
+        <span id="langText">中</span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="container">
+    <h1>🌸 MinecraftBE 服务器</h1>
+
+    <div class="actions-list">
+      <button class="md-button" id="joinServerBtn">
+        <span class="material-icons-outlined">login</span>
+        <span data-i18n="join">加入服务器</span>
+      </button>
+      <button class="md-button secondary" id="feedbackBtn">
+        <span class="material-icons-outlined">feedback</span>
+        <span data-i18n="feedback">问题反馈</span>
+      </button>
+      <button class="md-button secondary" id="sponsorBtn">
+        <span class="material-icons-outlined">volunteer_activism</span>
+        <span data-i18n="sponsor">赞助</span>
+      </button>
+    </div>
+
+    <div class="toast-message" id="copyToast">
+      <span class="material-icons-outlined">check_circle</span>
+      <span data-i18n="copied">已复制</span>
+    </div>
+
+    <div class="thanks-section">
+      <p data-i18n="thanks">感谢简幻欢提供公益服务器</p>
+      <div class="heart-footer">
+        <span class="material-icons-outlined">favorite</span> Py WHTZ
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

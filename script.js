@@ -7,7 +7,11 @@
       copied: '已复制',
       thanks: '感谢简幻欢提供公益服务器',
       title: 'MinecraftBE 服务器',
-      navTitle: 'WHTZ'
+      navTitle: 'MCBE',
+      copy: '复制',
+      ip: 'IP',
+      port: '端口',
+      version: '版本'
     },
     en: {
       join: 'Join Server',
@@ -16,7 +20,11 @@
       copied: 'Copied',
       thanks: 'Thanks to JianHuanHuan for the free server',
       title: 'MinecraftBE Server',
-      navTitle: 'WHTZ'
+      navTitle: 'MCBE',
+      copy: 'Copy',
+      ip: 'IP',
+      port: 'Port',
+      version: 'Version'
     }
   };
 
@@ -44,6 +52,8 @@
     if (langTextSpan) {
       langTextSpan.textContent = lang === 'zh' ? '中' : 'EN';
     }
+
+    updateServerModalLanguage();
   }
 
   function toggleLanguage() {
@@ -88,7 +98,6 @@
   const chatBtn = document.getElementById('chatBtn');
   const sponsorBtn = document.getElementById('sponsorBtn');
   const copyToast = document.getElementById('copyToast');
-  const serverLink = "www.www.www";
   const chatUrl = "https://qm.qq.com/q/6FGGOv8uFG";
   let toastTimer = null;
 
@@ -110,6 +119,82 @@
   imageModal.querySelector('.image-modal-overlay').addEventListener('click', closeImageModal);
   imageModal.querySelector('.image-modal-close').addEventListener('click', closeImageModal);
 
+  const serverModal = document.createElement('div');
+  serverModal.className = 'server-modal';
+  serverModal.innerHTML = `
+    <div class="server-modal-overlay"></div>
+    <div class="server-modal-content">
+      <button class="server-modal-close">&times;</button>
+      <div class="server-info-list" id="serverInfoList"></div>
+    </div>
+  `;
+  document.body.appendChild(serverModal);
+
+  function closeServerModal() {
+    serverModal.classList.remove('show');
+  }
+
+  serverModal.querySelector('.server-modal-overlay').addEventListener('click', closeServerModal);
+  serverModal.querySelector('.server-modal-close').addEventListener('click', closeServerModal);
+
+  const serverData = [
+    { labelKey: 'ip', value: '192.168.0.1' },
+    { labelKey: 'port', value: '1111' },
+    { labelKey: 'version', value: 'MinecraftBE 1.21.90' }
+  ];
+
+  function renderServerInfo() {
+    const list = document.getElementById('serverInfoList');
+    list.innerHTML = '';
+    serverData.forEach(item => {
+      const div = document.createElement('div');
+      div.className = 'server-info-item';
+      div.innerHTML = `
+        <span class="info-label">${i18n[currentLang][item.labelKey]}:</span>
+        <span class="info-value">${item.value}</span>
+        <button class="copy-btn" data-copy="${item.value}">${i18n[currentLang].copy}</button>
+      `;
+      list.appendChild(div);
+    });
+
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        const text = btn.getAttribute('data-copy');
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            await navigator.clipboard.writeText(text);
+          } else {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-9999px';
+            document.body.appendChild(textArea);
+            textArea.focus();
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+          }
+          showToast('copied');
+        } catch (err) {
+          console.error('复制失败');
+        }
+      });
+    });
+  }
+
+  function updateServerModalLanguage() {
+    const labels = document.querySelectorAll('.server-info-item .info-label');
+    if (labels.length === serverData.length) {
+      serverData.forEach((item, index) => {
+        labels[index].textContent = i18n[currentLang][item.labelKey] + ':';
+      });
+    }
+    const copyBtns = document.querySelectorAll('.copy-btn');
+    copyBtns.forEach(btn => {
+      btn.textContent = i18n[currentLang].copy;
+    });
+  }
+
   function showToast(messageKey = 'copied') {
     if (toastTimer) clearTimeout(toastTimer);
     const msg = i18n[currentLang][messageKey] || messageKey;
@@ -121,31 +206,9 @@
     }, 2500);
   }
 
-  async function copyToClipboard(text) {
-    try {
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        await navigator.clipboard.writeText(text);
-        return true;
-      } else {
-        const textArea = document.createElement('textarea');
-        textArea.value = text;
-        textArea.style.position = 'fixed';
-        textArea.style.left = '-9999px';
-        document.body.appendChild(textArea);
-        textArea.focus();
-        textArea.select();
-        const success = document.execCommand('copy');
-        document.body.removeChild(textArea);
-        return success;
-      }
-    } catch (err) {
-      return false;
-    }
-  }
-
-  joinBtn.addEventListener('click', async () => {
-    await copyToClipboard(serverLink);
-    showToast('copied');
+  joinBtn.addEventListener('click', () => {
+    renderServerInfo();
+    serverModal.classList.add('show');
   });
 
   chatBtn.addEventListener('click', () => {

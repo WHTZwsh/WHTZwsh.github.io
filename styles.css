@@ -273,7 +273,8 @@ h1 {
   font-size: 0.9rem;
 }
 
-.image-modal {
+.image-modal,
+.server-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -288,12 +289,14 @@ h1 {
   transition: opacity 0.3s ease;
 }
 
-.image-modal.show {
+.image-modal.show,
+.server-modal.show {
   opacity: 1;
   pointer-events: auto;
 }
 
-.image-modal-overlay {
+.image-modal-overlay,
+.server-modal-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -303,13 +306,14 @@ h1 {
   backdrop-filter: blur(4px);
 }
 
-.image-modal-content {
+.image-modal-content,
+.server-modal-content {
   position: relative;
   background: var(--md-sys-color-surface);
   border-radius: 20px;
   padding: 20px;
   max-width: 90%;
-  max-height: 80%;
+  width: 320px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.3);
   z-index: 1;
   animation: modalIn 0.3s ease;
@@ -327,7 +331,8 @@ h1 {
   display: block;
 }
 
-.image-modal-close {
+.image-modal-close,
+.server-modal-close {
   position: absolute;
   top: -15px;
   right: -15px;
@@ -347,7 +352,55 @@ h1 {
   line-height: 1;
 }
 
-.image-modal-close:hover {
+.image-modal-close:hover,
+.server-modal-close:hover {
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.server-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.server-info-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--md-sys-color-surface-variant);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  color: var(--md-sys-color-on-surface);
+}
+
+.server-info-item .info-label {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.server-info-item .info-value {
+  flex: 1;
+  text-align: left;
+}
+
+.copy-btn {
+  background: var(--md-sys-color-primary);
+  color: var(--md-sys-color-on-primary);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.copy-btn:hover {
+  filter: brightness(1.1);
+  box-shadow: var(--md-elevation-1);
 }

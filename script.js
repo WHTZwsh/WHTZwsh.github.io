@@ -2,23 +2,21 @@
   const i18n = {
     zh: {
       join: '加入服务器',
-      feedback: '问题反馈',
+      chat: '交流',
       sponsor: '赞助',
       copied: '已复制',
       thanks: '感谢简幻欢提供公益服务器',
       title: 'MinecraftBE 服务器',
-      navTitle: 'MCBE',
-      notDeveloped: '功能未开发，敬请期待'
+      navTitle: 'MCBE'
     },
     en: {
       join: 'Join Server',
-      feedback: 'Feedback',
+      chat: 'Chat',
       sponsor: 'Sponsor',
       copied: 'Copied',
       thanks: 'Thanks to JianHuanHuan for the free server',
       title: 'MinecraftBE Server',
-      navTitle: 'MCBE',
-      notDeveloped: 'Feature not available yet'
+      navTitle: 'MCBE'
     }
   };
 
@@ -87,11 +85,11 @@
   document.getElementById('langToggle').addEventListener('click', toggleLanguage);
 
   const joinBtn = document.getElementById('joinServerBtn');
-  const feedbackBtn = document.getElementById('feedbackBtn');
+  const chatBtn = document.getElementById('chatBtn');
   const sponsorBtn = document.getElementById('sponsorBtn');
   const copyToast = document.getElementById('copyToast');
   const serverLink = "www.www.www";
-  const feedbackUrl = "https://qm.qq.com/q/6FGGOv8uFG";
+  const chatUrl = "https://qm.qq.com/q/6FGGOv8uFG";
   let toastTimer = null;
 
   const imageModal = document.createElement('div');
@@ -150,8 +148,8 @@
     showToast('copied');
   });
 
-  feedbackBtn.addEventListener('click', () => {
-    window.open(feedbackUrl, '_blank', 'noopener,noreferrer');
+  chatBtn.addEventListener('click', () => {
+    window.open(chatUrl, '_blank', 'noopener,noreferrer');
   });
 
   sponsorBtn.addEventListener('click', () => {

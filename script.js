@@ -7,7 +7,7 @@
       copied: '已复制',
       thanks: '感谢简幻欢提供公益服务器',
       title: 'MinecraftBE 服务器',
-      navTitle: 'MCBE'
+      navTitle: 'WHTZ'
     },
     en: {
       join: 'Join Server',
@@ -16,7 +16,7 @@
       copied: 'Copied',
       thanks: 'Thanks to JianHuanHuan for the free server',
       title: 'MinecraftBE Server',
-      navTitle: 'MCBE'
+      navTitle: 'WHTZ'
     }
   };
 

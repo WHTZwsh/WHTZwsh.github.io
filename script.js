@@ -138,9 +138,9 @@
   serverModal.querySelector('.server-modal-close').addEventListener('click', closeServerModal);
 
   const serverData = [
-    { labelKey: 'ip', value: '192.168.0.1' },
-    { labelKey: 'port', value: '1111' },
-    { labelKey: 'version', value: 'MinecraftBE 1.21.90' }
+    { labelKey: 'ip', value: 'whtz.9666.fun' },
+    { labelKey: 'port', value: '38341' },
+    { labelKey: 'version', value: 'MinecraftBE 26.30.5' }
   ];
 
   function renderServerInfo() {

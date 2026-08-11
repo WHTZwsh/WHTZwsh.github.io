@@ -140,7 +140,7 @@
   const serverData = [
     { labelKey: 'ip', value: 'whtz.9666.fun' },
     { labelKey: 'port', value: '38341' },
-    { labelKey: 'version', value: 'MinecraftBE 26.30.5' }
+    { labelKey: 'version', value: 'MinecraftBE 1.26.40.5' }
   ];
 
   function renderServerInfo() {

@@ -1,0 +1,74 @@
+* { margin:0; padding:0; box-sizing:border-box; }
+html,body { height:100%; overflow:hidden; font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif; }
+body {
+  background: linear-gradient(180deg,#0b1026 0%,#1b2a4a 45%,#3a5a8c 75%,#7fa8d9 100%);
+  color:#fff; user-select:none;
+}
+
+.sky { position:absolute; inset:0; overflow:hidden; pointer-events:none; }
+.celestial { position:absolute; font-size:64px; transition:opacity 2s, transform 4s linear; filter:drop-shadow(0 0 24px rgba(255,220,120,.7)); }
+#sun  { top:8%;  right:10%; }
+#moon { top:10%; left:8%;  opacity:0; }
+.star { position:absolute; font-size:14px; opacity:.9; animation:twinkle 2.4s ease-in-out infinite; }
+@keyframes twinkle { 0%,100%{opacity:.15; transform:scale(.8);} 50%{opacity:.9; transform:scale(1.15);} }
+
+.cloud { position:absolute; font-size:52px; opacity:.85; will-change:transform; }
+@keyframes driftL { from{transform:translateX(110vw);} to{transform:translateX(-20vw);} }
+@keyframes driftR { from{transform:translateX(-20vw);} to{transform:translateX(110vw);} }
+
+#ground {
+  position:absolute; left:0; right:0; bottom:0; height:120px;
+  background: linear-gradient(180deg,#2e7d32,#1b5e20);
+  border-top:6px solid #4e342e;
+  display:flex; align-items:center; justify-content:center; gap:40px;
+  font-size:36px; z-index:5;
+}
+.runway-mark { position:absolute; top:-4px; left:0; right:0; height:8px;
+  background: repeating-linear-gradient(90deg,#ffd54f 0 40px, transparent 40px 80px); }
+
+#plane { position:absolute; left:8%; bottom:130px; font-size:72px; z-index:10;
+  transition:none; will-change:transform; filter:drop-shadow(0 10px 14px rgba(0,0,0,.35)); }
+
+#hud { position:absolute; top:0; left:0; right:0; padding:22px 30px; z-index:20;
+  display:flex; flex-direction:column; gap:12px;
+  background:linear-gradient(180deg,rgba(0,0,20,.55),transparent); }
+#phaseName { font-size:30px; font-weight:800; letter-spacing:2px;
+  text-shadow:0 2px 10px rgba(0,0,0,.5); }
+#phaseDesc { font-size:15px; opacity:.85; }
+#timer { position:absolute; top:22px; right:30px; font-size:26px; font-variant-numeric:tabular-nums;
+  background:rgba(0,0,0,.35); padding:6px 16px; border-radius:12px; }
+#barWrap { height:14px; background:rgba(255,255,255,.18); border-radius:99px; overflow:hidden; }
+#bar { height:100%; width:0%; border-radius:99px;
+  background:linear-gradient(90deg,#4fc3f7,#81c784,#ffd54f,#ff8a65); transition:width .5s linear; }
+
+#overlay { position:absolute; inset:0; z-index:50; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:26px;
+  background:rgba(5,10,30,.72); backdrop-filter:blur(6px); transition:opacity .8s; }
+#overlay.hidden { opacity:0; pointer-events:none; }
+#overlay h1 { font-size:44px; text-shadow:0 4px 18px rgba(0,0,0,.6); }
+#overlay p { opacity:.8; max-width:520px; text-align:center; line-height:1.8; }
+.btn { border:none; cursor:pointer; font-size:22px; font-weight:700; color:#fff;
+  padding:16px 46px; border-radius:99px;
+  background:linear-gradient(135deg,#ff7043,#f4511e);
+  box-shadow:0 8px 24px rgba(244,81,30,.5); transition:transform .15s, box-shadow .15s; }
+.btn:hover { transform:translateY(-3px) scale(1.03); box-shadow:0 12px 32px rgba(244,81,30,.65); }
+.btn:active { transform:scale(.97); }
+.btn.ghost { background:rgba(255,255,255,.14); box-shadow:none; font-size:15px; padding:10px 24px; }
+
+#controls { position:absolute; bottom:150px; left:50%; transform:translateX(-50%);
+  display:none; gap:14px; z-index:30; }
+#controls.show { display:flex; }
+
+#flash { position:absolute; inset:0; background:#fff; opacity:0; pointer-events:none; z-index:40; }
+@keyframes flashAnim { 0%{opacity:.55;} 100%{opacity:0;} }
+#flash.go { animation:flashAnim .8s ease-out; }
+
+.particle { position:absolute; font-size:22px; pointer-events:none; z-index:8;
+  animation:pop 1.4s ease-out forwards; }
+@keyframes pop { 0%{opacity:0; transform:translateY(0) scale(.5);}
+  20%{opacity:1;} 100%{opacity:0; transform:translateY(-120px) scale(1.3);} }
+
+#banner { position:absolute; top:38%; left:50%; transform:translate(-50%,-50%) scale(0);
+  font-size:56px; font-weight:900; z-index:45; text-align:center;
+  text-shadow:0 6px 24px rgba(0,0,0,.6); transition:transform .6s cubic-bezier(.34,1.56,.64,1); }
+#banner.show { transform:translate(-50%,-50%) scale(1); }

@@ -1,9 +1,9 @@
 const TOTAL = 600;
 const PHASES = [
-  { name:"① 🐢 缓缓滑跑", desc:"放松… 飞机正在跑道上慢慢积蓄力量", from:0,   to:150, emoji:"🛫" },
-  { name:"② 🚀 全力冲刺", desc:"引擎全开！速度表指针疯狂上蹿！",   from:150, to:300, emoji:"✈️" },
-  { name:"③ ✨ 有感觉了", desc:"冲出云霄！这就是飞一般的感觉～",   from:300, to:450, emoji:"🛩️" },
-  { name:"④ 🛬 平稳落地", desc:"收油门、放襟翼、对准跑道… 轻轻接地", from:450, to:600, emoji:"🛬" },
+  { name:"① 🐢 缓缓", desc:"开始温暖红肠", from:0,   to:150, emoji:"🛫" },
+  { name:"② 🚀 冲刺加速", desc:"卤快点啊！",   from:150, to:300, emoji:"✈️" },
+  { name:"③ ✨ 有感觉了", desc:"牛奶快挤出来了吗",   from:300, to:450, emoji:"🛩️" },
+  { name:"④ 🛬 平稳落地", desc:"爽", from:450, to:600, emoji:"🛬" },
 ];
 
 let elapsed = 0, timerId = null, paused = false, phaseIdx = -1, lastTick = 0, groundSpeed = 2;
@@ -116,7 +116,7 @@ function land() {
   $("banner").classList.add("show");
   $("controls").classList.remove("show");
   $("phaseName").textContent = "🛬 已落地";
-  $("phaseDesc").textContent = "本次飞行全程 10 分钟，完美收官 ✔";
+  $("phaseDesc").textContent = "本次起飞全程 10 分钟";
 }
 
 function bindEvents() {
@@ -135,7 +135,7 @@ function bindEvents() {
   };
   $("btnPause").onclick = () => {
     paused = !paused;
-    $("btnPause").textContent = paused ? "▶️ 继续" : "⏸ 暂停";
+    $("btnPause").textContent = paused ? "▶️" : "⏸";
   };
   $("btnSkip").onclick = () => { elapsed = TOTAL - 0.01; render(); };
 }
